@@ -19,19 +19,13 @@ function createImageElement(image) {
   img.alt = image.alt;
 
   li.append(img);
-  return li;
+  return li.outerHTML;
 }
 function fillImages() {
   const container = document.querySelector("ul.gallery");
   if(!images.length)
     return;
-  let snake = createImageElement(images[0]);
-  container.append(snake);
-
-  for (let i = images.length-1; i >=1 ; i-- ) {
-    const img = images[i];
-    snake.insertAdjacentElement("afterend", createImageElement(img))
-    
-  }
+  let string = images.map(img=>createImageElement(img)).join("");
+  container.innerHTML=string;
 }
 fillImages();
